@@ -9,14 +9,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Post to Discord
-        env:
-          # The secret containing the Discord webhook URL
-          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
-        # Use the recommended pinned version for stability:
-        uses: Ilshidur/action-discord@0.3.2
+        uses: stegzilla/discord-notify@v2
         with:
-          # Customize your message. Event payload variables are available:
-          args: |
-            **{{ EVENT_PAYLOAD.repository.name }}** just published a new release! 
-            Tag: **{{ EVENT_PAYLOAD.release.tag_name }}**  
-            Link: {{ EVENT_PAYLOAD.release.html_url }}
+          webhook_url: ${{ secrets.DISCORD_WEBHOOK }}
+          title: New Release Available
+          message: "Version: ${{ EVENT_PAYLOAD.release.tag_name }}\nLink: ${{ EVENT_PAYLOAD.release.html_url }}"
+          include_image: true
+          avatar_url: https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png
+          username: GitHub Release Notifier
