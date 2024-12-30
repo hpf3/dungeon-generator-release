@@ -16,4 +16,3 @@ jobs:
           message: "Version: ${{ github.event.release.tag_name }}\nLink: ${{ github.event.release.html_url }}\nChanges:\n${{ github.event.release.body }}"
           include_image: true
           avatar_url: https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png
-          username: GitHub Release Notifier
